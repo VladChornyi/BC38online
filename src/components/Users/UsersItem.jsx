@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import styles from './UsersItem.module.css';
 
-console.log(styles);
+// console.log(styles);
 
 const getColor = () => {
   return Math.random() < 0.5 ? 'red' : 'green';
