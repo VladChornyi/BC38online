@@ -1,7 +1,8 @@
+import './Card.css';
+
 const Card = ({ text = 'Hello', href, toDo }) => {
-  toDo('Hello');
   return (
-    <li>
+    <li className="item">
       <p>{text}</p>
       <a href={href}>{href}</a>
     </li>

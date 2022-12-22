@@ -1,0 +1,18 @@
+.wrapper {
+  background-color: blanchedalmond;
+  .title {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+
+.mainTitle {
+  composes: title;
+  color: blueviolet;
+}
+
+.subTitle {
+  composes: title;
+  color: tomato;
+}
