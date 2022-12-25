@@ -7,3 +7,6 @@
 .test {
   font-size: large;
 }
+.outlined {
+  border: 2px solid tomato;
+}

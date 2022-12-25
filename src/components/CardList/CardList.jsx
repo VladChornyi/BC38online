@@ -1,4 +1,4 @@
-import Card from 'components/Card/Card';
+import { Card } from 'components/Card';
 import React from 'react';
 import { nanoid } from 'nanoid';
 import images from '../../assets/images.json';

@@ -1,21 +1,28 @@
+import { StyledText } from 'App.styled';
+import clsx from 'clsx';
 import { UsersList } from 'components';
 import Button from 'components/Button/Button';
-import Card from 'components/Card/Card';
+import { Card } from 'components/Card';
 import CardList from 'components/CardList/CardList';
-import Container from 'components/Container/Container';
+import Container from 'components/Container';
 import Title from 'components/Title/Title';
+import { nanoid } from 'nanoid';
 
 import { Fragment } from 'react';
+import styled from 'styled-components';
+import { GlobalStyles } from 'utils/GlobalStyles/GlobalStyles.styled';
 
 let test = true;
 const users = ['hello'];
 const styleClass = 'link';
 
 export const App = () => {
-  // const obj = {
-  //   text: 'Hello',
-  //   id: '1',
-  // };
+  const obj = {
+    text: 'Hello',
+    id: '1',
+  };
+
+  // Throws an error in strict mode
 
   // const bool = true;
   // const arr = ['1', '2', '3', '4', '5', '6', '7'];
@@ -27,6 +34,18 @@ export const App = () => {
     { name: 'Poly', id: '1', test: true },
     { name: 'Mango', id: '2', test: false },
   ];
+
+  // const theme = {
+  //   dark: {
+  //     color: 'yellow',
+  //     backgroundColor: 'black',
+  //   },
+  //   light: {
+  //     backgroundColor: 'white',
+  //     color: 'black',
+  //   },
+  // };
+
   return (
     <>
       {/* <Button type="button" isMain >
@@ -35,26 +54,26 @@ export const App = () => {
       <Button type="submit">Secondary button</Button> */}
       {/* <Title />
       <Title isMain /> */}
-      <Button type="button" color="white">
+      <Button isOnline type="button" color="white">
         Main button
       </Button>
-      <Button type="submit" color="black">
+      <Button type="submit" color="yellow">
         Secondary button
       </Button>
       <Button type="submit" color="tomato">
-        Secondary button
+        Custom button
       </Button>
       <Container usersList={users} title="Title">
         <CardList usersProps={users} />
-        <p>
+        <StyledText margin>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo quasi deleniti aliquid distinctio quod
           necessitatibus amet facilis excepturi repellendus fugiat, animi ut a. Minus explicabo officia asperiores
           cumque reiciendis ea!
-        </p>
+        </StyledText>
         Просто текст
       </Container>
-      {/* <Card text={obj.text} href="/" toDo={func} />
-      <Card href="/Bye" toDo={func} /> */}
+      <Card text={obj.text} href="/" />
+      <Card href="/Bye" />
       {/* {users.length ? (
         <a className={`${styleClass} ${test ? 'first-link' : 'anotherLink'}`} href="">
           first LInk
@@ -66,6 +85,7 @@ export const App = () => {
       {/* )} */}
       {/* {users.length > 0 && <p>{myNull}</p>} */}
       {/* <UsersList /> */}
+      <GlobalStyles />
     </>
   );
 };

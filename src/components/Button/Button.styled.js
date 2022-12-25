@@ -10,7 +10,6 @@ import styled from 'styled-components';
 // `;
 
 const handleColorType = color => {
-  console.log('color :>> ', color);
   switch (color) {
     case 'main':
       return '#03a9f3';
@@ -33,4 +32,18 @@ const StyledButton = styled.button`
 
 export const ExtBtn = styled(StyledButton)`
   border-radius: 15px;
+  color: ${props => props.color === 'black' && 'white'};
+  background-color: ${props => (props.isOnline ? 'green' : 'red')};
+  transition: all 500ms linear;
+  &:hover {
+    background-color: blue;
+  }
+`;
+
+export const Wrapper = styled.div`
+  margin: 10px;
+
+  ${ExtBtn} {
+    color: bisque;
+  }
 `;

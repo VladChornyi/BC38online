@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton, ExtBtn } from './Button.styled';
 
-export default function Button({ children, color, type, isMain, variant }) {
+export default function Button({ isOnline, children, color, type, isMain, variant }) {
   return (
-    <ExtBtn isMain={isMain} type={type} color={color} variant={variant}>
+    <ExtBtn isOnline={isOnline} isMain={isMain} type={type} color={color} variant={variant}>
       {children}
     </ExtBtn>
   );

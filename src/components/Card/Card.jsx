@@ -1,6 +1,6 @@
 import './Card.css';
 
-const Card = ({ text = 'Hello', href, toDo }) => {
+export const Card = ({ text = 'Hello', href, toDo }) => {
   return (
     <li className="item">
       <p>{text}</p>
@@ -8,5 +8,3 @@ const Card = ({ text = 'Hello', href, toDo }) => {
     </li>
   );
 };
-
-export default Card;
