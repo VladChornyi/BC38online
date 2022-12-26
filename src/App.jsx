@@ -10,8 +10,9 @@ export const App = () => {
   return (
     <Layout>
       <Header title="Hello world!" />
+      <Counter defaultValue={5465} test="Hello" bool={false} />
       <Banner />
-      <Counter />
+
       {/* <UsersList /> */}
       {/* <Skills name="skills" list={skillsList} /> */}
       <br />

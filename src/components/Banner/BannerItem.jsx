@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 
-export const BannerItem = ({ title, text, children, onClick }) => {
+export const BannerItem = ({ title, text, children, onOpenModal }) => {
   return (
     <div className="feature col">
       <div
@@ -15,8 +15,8 @@ export const BannerItem = ({ title, text, children, onClick }) => {
         <p>{text}</p>
       </div>
 
-      <button type="button" className="btn btn-primary" onClick={onClick}>
-        Call to action
+      <button type="button" className="btn btn-primary" onClick={onOpenModal}>
+        Open modal
       </button>
     </div>
   );
