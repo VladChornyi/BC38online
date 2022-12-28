@@ -1,3 +1,4 @@
+import { Timer } from 'components/Timer/Timer';
 import { Component } from 'react';
 
 import { IoCashOutline } from 'react-icons/io5';
@@ -35,7 +36,7 @@ export class Banner extends Component {
 
         {this.state.isOpenModal && (
           <Modal onCloseModal={this.handleToggleModal}>
-            <BannerModal />
+            <Timer />
           </Modal>
         )}
       </>
