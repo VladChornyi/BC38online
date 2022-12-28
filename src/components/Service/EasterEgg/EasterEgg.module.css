@@ -18,11 +18,11 @@
 
 .img {
   width: 180px;
-  transform: translateX(-120%) rotate(10deg);
+  transform: translateX(-20%) rotate(10deg);
 }
 
 .open .img {
-  animation: 8s slide 15s ease-in-out;
+  animation: 8s slide ease-in-out;
 }
 
 .close .img {

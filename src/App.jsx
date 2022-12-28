@@ -18,7 +18,7 @@ export const App = () => {
       <UsersList />
       {/* <Skills name="skills" list={skillsList} /> */}
       <br />
-      {/* <LoginForm /> */}
+      <LoginForm />
     </Layout>
   );
 };
