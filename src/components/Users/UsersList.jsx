@@ -4,11 +4,28 @@ import usersJson from '../../assets/users.json';
 
 import { UsersItem } from './UsersItem';
 
+const LOCAL_KEY = 'users';
+
 export class UsersList extends Component {
   state = {
     usersList: usersJson,
     filter: '',
+    page: 2,
   };
+
+  componentDidMount() {
+    const localUsers = localStorage.getItem(LOCAL_KEY);
+    const parsedUsers = JSON.parse(localUsers);
+    if (parsedUsers) {
+      this.setState({ usersList: parsedUsers });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.usersList !== this.state.usersList) {
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(this.state.usersList));
+    }
+  }
 
   handleDeleteUser = idToDelete => {
     this.setState(prevState => ({ usersList: prevState.usersList.filter(user => user.id !== idToDelete) }));
