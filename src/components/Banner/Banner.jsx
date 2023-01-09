@@ -1,4 +1,5 @@
 import { Timer } from 'components/Timer/Timer';
+import { PureComponent } from 'react';
 import { Component } from 'react';
 
 import { IoCashOutline } from 'react-icons/io5';
@@ -11,8 +12,25 @@ import { BannerModal } from './BannerModal';
 const TEXT =
   "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.";
 
+class Test extends PureComponent {
+  componentDidUpdate() {
+    console.log('update');
+  }
+
+  render() {
+    return <button type="button"> button</button>;
+  }
+}
+
 export class Banner extends Component {
   state = { isOpenModal: false };
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return 'Hello world';
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(snapshot);
+  }
 
   handleOpenModal = () => {
     this.setState({ isOpenModal: true });
@@ -39,6 +57,7 @@ export class Banner extends Component {
             <Timer />
           </Modal>
         )}
+        <Test test={{ obj: {} }} />
       </>
     );
   }
