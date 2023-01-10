@@ -28,44 +28,44 @@ export const Banner = () => {
   // state = { isOpenModal: false };
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  export class Banner extends Component {
-    state = { isOpenModal: false };
+//   export class Banner extends Component {
+//     state = { isOpenModal: false };
 
-    getSnapshotBeforeUpdate(prevProps, prevState) {
-      return 'Hello world';
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-      console.log(snapshot);
-    }
+//     getSnapshotBeforeUpdate(prevProps, prevState) {
+//       return 'Hello world';
+//     }
+//     componentDidUpdate(prevProps, prevState, snapshot) {
+//       console.log(snapshot);
+//     }
 
-    handleOpenModal = () => {
-      this.setState({ isOpenModal: true });
-    };
-    handleCloseModal = () => {
-      this.setState({ isOpenModal: false });
-    };
+//     handleOpenModal = () => {
+//       this.setState({ isOpenModal: true });
+//     };
+//     handleCloseModal = () => {
+//       this.setState({ isOpenModal: false });
+//     };
 
-    handleToggleModal = () => {
-      this.setState(prevState => ({ isOpenModal: !prevState.isOpenModal }));
-    };
+//     handleToggleModal = () => {
+//       this.setState(prevState => ({ isOpenModal: !prevState.isOpenModal }));
+//     };
 
-    render() {
-      return (
-        <>
-          <div className="row mb-5 p-5 row-cols-2 bg-light">
-            <BannerItem title="Featured title" text={TEXT} onOpenModal={this.handleToggleModal}>
-              <IoCashOutline />
-            </BannerItem>
-          </div>
+//     render() {
+//       return (
+//         <>
+//           <div className="row mb-5 p-5 row-cols-2 bg-light">
+//             <BannerItem title="Featured title" text={TEXT} onOpenModal={this.handleToggleModal}>
+//               <IoCashOutline />
+//             </BannerItem>
+//           </div>
 
-          {this.state.isOpenModal && (
-            <Modal onCloseModal={this.handleToggleModal}>
-              <Timer />
-            </Modal>
-          )}
-          <Test test={{ obj: {} }} />
-        </>
-      );
-    }
-  }
-};
+//           {this.state.isOpenModal && (
+//             <Modal onCloseModal={this.handleToggleModal}>
+//               <Timer />
+//             </Modal>
+//           )}
+//           <Test test={{ obj: {} }} />
+//         </>
+//       );
+//     }
+//   }
+// };
