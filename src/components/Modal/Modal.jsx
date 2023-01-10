@@ -1,4 +1,6 @@
 import { PropTypes } from 'prop-types';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 const modalContainer = document.getElementById('modal');
