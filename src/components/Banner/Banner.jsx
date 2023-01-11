@@ -14,19 +14,6 @@ const TEXT =
   "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.";
 
 export const Banner = () => {
-  const nameRef = useRef(null);
-  const phoneRef = useRef(null);
-  const emailRef = useRef(null);
-  const changeFocus = e => {};
-
-  useEffect(() => {
-    window.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        console.log(phoneRef);
-        phoneRef.current.focus();
-      }
-    });
-  });
   useEffect(() => {});
   // state = { isOpenModal: false };
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -44,9 +31,6 @@ export const Banner = () => {
 
   return (
     <>
-      <input ref={nameRef} name="name"></input>
-      <input ref={phoneRef} name="phone"></input>
-      <input ref={emailRef} name="email"></input>
       <div className="row mb-5 p-5 row-cols-2 bg-light">
         <BannerItem title="Featured title" text={TEXT} onOpenModal={handleToggleModal}>
           <IoCashOutline />

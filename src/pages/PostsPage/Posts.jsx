@@ -1,10 +1,9 @@
 import axios from 'axios';
+import { Button } from 'components/Button';
 import { FETCH_STATUS } from 'constants/fetchStatus';
 import { useState, useEffect, useRef } from 'react';
 
-import { getPostById, getPosts } from 'services/posts.service';
-
-import { Button } from '../Button';
+import { getPostById, getPostsService } from 'services/posts.service';
 
 import { PostsError } from './PostsErorr';
 import { PostsItem } from './PostsItem';
@@ -14,15 +13,12 @@ import { SearchPosts } from './SearchPosts';
 // const LOCAL_KEY = 'state';
 // const initial = { page: 1, isLoading: false };
 
-export const Posts = () => {
+export const PostsPage = () => {
   const [posts, setPosts] = useState(null);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(FETCH_STATUS.Idle);
-  const [count, setCount] = useState(0);
-
-  const countRef = useRef(0);
 
   // const [state, setState] = useState(...initial);
 
@@ -33,7 +29,7 @@ export const Posts = () => {
     const fetchPosts = async () => {
       setStatus(FETCH_STATUS.Loading);
       try {
-        const posts = await getPosts();
+        const posts = await getPostsService();
         setPosts(posts);
         setStatus(FETCH_STATUS.Resolved);
         // this.setState({ posts, status: FETCH_STATUS.Resolved });
@@ -56,7 +52,7 @@ export const Posts = () => {
     const fetchMore = async () => {
       setStatus(FETCH_STATUS.Loading);
       try {
-        const posts = await getPosts(page);
+        const posts = await getPostsService(page);
         console.log('posts :>> ', posts);
         setPosts(prevPosts => ({
           ...posts,
@@ -86,19 +82,6 @@ export const Posts = () => {
   }
   return (
     <>
-      <button className="ms-4 btn-primary" onClick={() => (countRef.current += 1)}>
-        click me
-      </button>
-      <button
-        className="ms-4 btn-primary"
-        onClick={() => {
-          setCount(countRef.current);
-        }}
-      >
-        update
-      </button>
-      <span>{count}</span>
-
       {/* <SearchPosts /> */}
       <div className="container-fluid g-0 pb-5 mb-5">
         <div className="row">

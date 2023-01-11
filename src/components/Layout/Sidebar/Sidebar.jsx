@@ -1,9 +1,9 @@
-import { AuthContext } from 'context/AuthContext';
 import { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from 'context/AuthContext';
 
 export const Sidebar = () => {
   const [password, setPassword] = useState('');
-  console.log('Sidebar rendered :>> ');
 
   const { isAuth, logIn } = useContext(AuthContext);
   const handleSubmit = e => {
@@ -32,18 +32,27 @@ export const Sidebar = () => {
   return (
     <aside className="nav nav-pills p-5 bg-light w-100" style={{ maxWidth: '300px', height: 'auto' }}>
       <div className="d-flex flex-column" style={{ position: 'sticky', top: 30, left: 0, height: 'max-content' }}>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-light">
-          Home
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Profile
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Messages
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Settings
-        </a>
+        <NavLink
+          to="/"
+          style={{ textAlign: 'left', marginLeft: '-10px' }}
+          className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+        >
+          Home page
+        </NavLink>
+        <NavLink
+          to="/posts"
+          style={{ textAlign: 'left', marginLeft: '-10px' }}
+          className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+        >
+          Posts list
+        </NavLink>
+        <NavLink
+          to="/tasks"
+          style={{ textAlign: 'left', marginLeft: '-10px' }}
+          className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+        >
+          React exercises
+        </NavLink>
       </div>
     </aside>
   );
