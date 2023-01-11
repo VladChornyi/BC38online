@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '../Button';
+import { Button } from '../../components/Button';
 
 export const SearchPosts = ({ onSubmit }) => {
   const [search, setSearch] = useState('Hello world');
