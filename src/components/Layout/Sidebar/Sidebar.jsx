@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from 'context/AuthContext';
 
 export const Sidebar = () => {
   const [password, setPassword] = useState('');
+  const location = useLocation();
 
   const { isAuth, logIn } = useContext(AuthContext);
   const handleSubmit = e => {
@@ -36,6 +37,7 @@ export const Sidebar = () => {
           to="/"
           style={{ textAlign: 'left', marginLeft: '-10px' }}
           className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+          state={{ from: location }}
         >
           Home page
         </NavLink>
@@ -43,6 +45,7 @@ export const Sidebar = () => {
           to="/posts"
           style={{ textAlign: 'left', marginLeft: '-10px' }}
           className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+          state={{ from: location }}
         >
           Posts list
         </NavLink>
@@ -50,6 +53,7 @@ export const Sidebar = () => {
           to="/tasks"
           style={{ textAlign: 'left', marginLeft: '-10px' }}
           className={({ isActive }) => (isActive ? 'btn btn-primary' : 'btn btn-light')}
+          state={{ from: location }}
         >
           React exercises
         </NavLink>

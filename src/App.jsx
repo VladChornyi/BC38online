@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Banner } from './components/Banner';
 import { Counter } from './components/Counter';
 import { Header, Layout } from 'components/Layout';
@@ -6,20 +7,31 @@ import { Skills } from 'components/Skills/Skills';
 import { skillsList } from 'config';
 // import { LoginForm } from './components/LoginForm/LoginForm';
 // import { UsersList } from 'components/Users';
-
 import { AuthProvider } from 'context/AuthContext';
-import { Route, Routes } from 'react-router';
-import HomePage from 'pages/HomePage/HomePage';
-import { PostsPage } from 'pages/PostsPage/Posts';
-import TasksPage from 'pages/TasksPage/TasksPage';
-import SinglePostPage from 'pages/SinglePostPage/SinglePostPage';
+import { Navigate, Route, Routes } from 'react-router';
+
+// import HomePage from 'pages/HomePage/HomePage';
+// import { PostsPage } from 'pages/PostsPage';
+// import TasksPage from 'pages/TasksPage/TasksPage';
+// import SinglePostPage from 'pages/SinglePostPage/SinglePostPage';
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const SinglePostPage = lazy(() => import('pages/SinglePostPage/SinglePostPage'));
+const TasksPage = lazy(() => import('pages/TasksPage/TasksPage'));
+const PostsPage = lazy(() => import('pages/PostsPage'));
 
 export const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>HomePage...</div>}>
+                <HomePage />
+              </Suspense>
+            }
+          />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<SinglePostPage />} />
           <Route path="/tasks" element={<TasksPage />}>
@@ -28,7 +40,7 @@ export const App = () => {
             <Route path="banner" element={<Banner />} />
             <Route path="counter" element={<Counter />} />
           </Route>
-          <Route path="*" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </>
