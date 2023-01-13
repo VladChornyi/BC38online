@@ -1,3 +1,4 @@
+import GoBack from 'components/GoBack/GoBack';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { getSinglePostService } from 'services/posts.service';
@@ -31,9 +32,10 @@ const SinglePostPage = () => {
 
   return (
     <section ref={sectionRef}>
-      <button type="button" onClick={() => setSubmitQuery('')}>
+      {/* <button type="button" onClick={() => setSubmitQuery('')}>
         click me
-      </button>
+      </button> */}
+      <GoBack />
       {postData && (
         <>
           <img style={{ maxWidth: '100%' }} src={postData.image} />

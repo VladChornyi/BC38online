@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { Button } from 'components/Button';
+import GoBack from 'components/GoBack/GoBack';
 import { FETCH_STATUS } from 'constants/fetchStatus';
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { getPostById, getPostsService } from 'services/posts.service';
 
@@ -19,6 +21,7 @@ export const PostsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(FETCH_STATUS.Idle);
+  const location = useLocation();
 
   // const [state, setState] = useState(...initial);
 
@@ -83,6 +86,7 @@ export const PostsPage = () => {
   return (
     <>
       {/* <SearchPosts /> */}
+      <GoBack />
       <div className="container-fluid g-0 pb-5 mb-5">
         <div className="row">
           {posts?.data?.map(post => (
