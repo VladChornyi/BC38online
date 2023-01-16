@@ -19,9 +19,6 @@ const SinglePostPage = () => {
     if (!submitQuery) {
       return alert('Введіть дані');
     }
-    getSinglePostService(postId).then(data => {
-      console.log('запит');
-    });
   }, [submitQuery]);
 
   useEffect(() => {

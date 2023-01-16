@@ -21,7 +21,7 @@ const PostsPage = lazy(() => import('pages/PostsPage'));
 
 export const App = () => {
   return (
-    <>
+    <Suspense fallback={<p>Loading...</p>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -43,7 +43,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
-    </>
+    </Suspense>
     //
     //
     //   <Counter defaultValue={5465} test="Hello" bool={false} />
