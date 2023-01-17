@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuth(true);
       hi();
     } else {
-      console.log('Please enter your password');
+      alert('Please enter your password');
     }
   };
   const logOut = () => {

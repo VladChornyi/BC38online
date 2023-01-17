@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 import { memo, useMemo, useState, Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrementAction, incrementAction } from 'redux/counter/action';
 
 const mobilePhones = [
   { title: 'iPhone', name: 'iphone' },
@@ -7,7 +9,6 @@ const mobilePhones = [
 ];
 
 const Test = memo(({ test }) => {
-  console.log('render');
   return (
     <button type="button" className="btn p-3 btn-outline-light w-25 mx-2" onClick={test}>
       button
@@ -16,25 +17,11 @@ const Test = memo(({ test }) => {
 });
 
 export const Counter = ({ defaultValue }) => {
-  const [counter, setCounter] = useState(defaultValue);
+  const dispatch = useDispatch();
+  const { counter } = useSelector(state => state);
+
   const [iphone, setIphone] = useState(0);
   const [android, setAndroid] = useState(0);
-
-  const hardResult = useMemo(() => {
-    let i = 0;
-    while (i < 800000000) {
-      i += 1;
-    }
-    return counter;
-  }, [counter]);
-
-  const hardFunc = useCallback(() => {
-    let i = 0;
-    while (i < 800000000) {
-      i += 1;
-    }
-    setCounter(prev => prev + 1);
-  }, []);
 
   const handleVotePhone = e => {
     const { name } = e.target;
@@ -51,40 +38,35 @@ export const Counter = ({ defaultValue }) => {
   };
 
   const handleIncrement = () => {
-    setCounter(prevState => prevState + 1);
+    dispatch(incrementAction(10));
+    // dispatch({ type: INCREMENT, payload: 1 });
+    // setCounter(prevState => prevState + 1);
   };
 
   const handleDecrement = () => {
-    setCounter(prevState => prevState - 1);
+    dispatch(decrementAction(10));
   };
 
-  // onClick = (callback) => {
-  //   const event = { event: 'click' };
-  //   callback(event);
-  // }
-
-  // console.log('this.props :>> ', this.props);
   return (
     <div className="mb-5 p-5 text-white bg-dark rounded-3">
-      <Test test={hardFunc} />
       <h2 className="text-center">Counter</h2>
-      <p className="text-center my-5" style={{ fontSize: 80 }}>
+      {/* <p className="text-center my-5" style={{ fontSize: 80 }}>
         IPhone: {iphone}
       </p>
       <p className="text-center my-5" style={{ fontSize: 80 }}>
         Android: {android}
-      </p>
+      </p> */}
       <p className="text-center my-5" style={{ fontSize: 80 }}>
         {counter}
       </p>
 
       <div className="d-flex align-items-center justify-content-center w-100">
-        <button name="iphone" className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleVotePhone}>
+        {/* <button name="iphone" className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleVotePhone}>
           IPhone
         </button>
         <button className="btn p-3 btn-outline-light w-25 mx-2" name="android" type="button" onClick={handleVotePhone}>
           Android
-        </button>
+        </button> */}
 
         <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleIncrement}>
           Plus
@@ -92,8 +74,6 @@ export const Counter = ({ defaultValue }) => {
         <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleDecrement}>
           Minus
         </button>
-
-        <span>{hardResult}</span>
       </div>
     </div>
   );
