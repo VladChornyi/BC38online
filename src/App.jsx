@@ -9,11 +9,8 @@ import { skillsList } from 'config';
 // import { UsersList } from 'components/Users';
 import { AuthProvider } from 'context/AuthContext';
 import { Navigate, Route, Routes } from 'react-router';
+import UsersPage from 'pages/UsersPage/UsersPage';
 
-// import HomePage from 'pages/HomePage/HomePage';
-// import { PostsPage } from 'pages/PostsPage';
-// import TasksPage from 'pages/TasksPage/TasksPage';
-// import SinglePostPage from 'pages/SinglePostPage/SinglePostPage';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const SinglePostPage = lazy(() => import('pages/SinglePostPage/SinglePostPage'));
 const TasksPage = lazy(() => import('pages/TasksPage/TasksPage'));
@@ -39,6 +36,7 @@ export const App = () => {
             <Route path="skills" element={<Skills name="skills" list={skillsList} />} />
             <Route path="banner" element={<Banner />} />
             <Route path="counter" element={<Counter />} />
+            <Route path="users" element={<UsersPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
