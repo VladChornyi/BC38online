@@ -1,1 +1,1 @@
-export const counterInitialState = 0;
+// export const counterInitialState = 0;

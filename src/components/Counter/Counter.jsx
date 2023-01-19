@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { memo, useMemo, useState, Component } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrementAction, incrementAction } from 'redux/counter/action';
+import { getCounterSelector, getUserEmail } from 'redux/counter/counter.selectors';
+import { decrementAction, incrementAction } from 'redux/counter/counter.slice';
 
 const mobilePhones = [
   { title: 'iPhone', name: 'iphone' },
@@ -18,7 +19,7 @@ const Test = memo(({ test }) => {
 
 export const Counter = ({ defaultValue }) => {
   const dispatch = useDispatch();
-  const { counter } = useSelector(state => state);
+  const counter = useSelector(getCounterSelector);
 
   const [iphone, setIphone] = useState(0);
   const [android, setAndroid] = useState(0);
