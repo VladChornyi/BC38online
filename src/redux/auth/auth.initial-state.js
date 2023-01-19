@@ -1,1 +1,4 @@
-export const authInitialState = { isLoggedIn: false };
+export const authInitialState = {
+  isLoggedIn: false,
+  user: null,
+};

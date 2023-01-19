@@ -1,17 +1,24 @@
 import { useContext, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from 'context/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthSelector } from 'redux/auth/auth.selector';
+import { loginAction, logoutAction } from 'redux/auth/auth.slice';
 export const Sidebar = () => {
   const [password, setPassword] = useState('');
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const { isAuth, logIn } = useContext(AuthContext);
   const handleSubmit = e => {
     e.preventDefault();
-    logIn(password);
+    dispatch(loginAction({ password, user: { name: 'Vlad', email: 'vlad@gmail.com' } }));
+    // logIn(password);
   };
 
-  if (!isAuth) {
+  const { isLoggedIn } = useSelector(getAuthSelector);
+
+  if (!isLoggedIn) {
     return (
       <form onSubmit={handleSubmit}>
         <input
@@ -57,6 +64,15 @@ export const Sidebar = () => {
           React exercises
         </NavLink>
       </div>
+      <button
+        type="button"
+        className="btn primary-btn"
+        onClick={() => {
+          dispatch(logoutAction());
+        }}
+      >
+        LOGOUT
+      </button>
     </aside>
   );
 };
