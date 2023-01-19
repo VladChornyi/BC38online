@@ -15,6 +15,9 @@ const TasksPage = () => {
         <NavLink className={({ isActive }) => (isActive ? 'btn btn-primary m-2' : 'btn btn-light m-2')} to="banner">
           BannerPage
         </NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'btn btn-primary m-2' : 'btn btn-light m-2')} to="users">
+          UsersPage
+        </NavLink>
       </nav>
       <section>
         <Outlet />
