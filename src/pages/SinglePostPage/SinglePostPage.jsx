@@ -1,12 +1,15 @@
 import GoBack from 'components/GoBack/GoBack';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { selectUsersItems } from 'redux/users/selector';
 import { getSinglePostService } from 'services/posts.service';
 
 const SinglePostPage = () => {
   const { postId } = useParams();
   const [postData, setPostdata] = useState(null);
   const [submitQuery, setSubmitQuery] = useState('');
+  const usersItems = useSelector(selectUsersItems);
 
   const isFirstRender = useRef(true);
   const sectionRef = useRef(null);
