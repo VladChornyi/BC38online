@@ -10,21 +10,16 @@ const loading = state => {
   state.isLoading = true;
 };
 
-const initialState = { items: [], isLoading: false, error: null };
+const initialState = { items: [], isLoading: false, error: null, filter: '' };
 
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  // reducers: {
-  //   fetchUsersPending(state) {
-  //     state.isLoading = true;
-  //   },
-  //   fetchUsersError(state, action) {
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  //   },
-  //   fetchUsersActionSuccess,
-  // },
+  reducers: {
+    changeFilter(state, { payload }) {
+      state.filter = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchUsers.pending, loading)
@@ -44,5 +39,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { fetchUsersPending, fetchUsersError } = usersSlice.actions;
+export const { fetchUsersPending, fetchUsersError, changeFilter } = usersSlice.actions;
 export default usersSlice.reducer;
