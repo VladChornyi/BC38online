@@ -1,19 +1,22 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from './auth/auth.slice';
 import counterReducer from './counter/counter.slice';
 import usersReducer from './users/users.slice';
+import authReducer from './auth/auth.slice';
+import userReducer from './user/user.slice';
 
 const persistConfig = {
-  key: 'BC38',
+  key: 'AUTH',
   storage,
+  blacklist: ['status'],
 };
 
-const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const rootReducer = combineReducers({
   counter: counterReducer,
-  auth: persistedAuthReducer,
   users: usersReducer,
+  auth: persistedReducer,
+  user: userReducer,
 });

@@ -1,26 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { FETCH_STATUS } from 'constants/fetchStatus';
+import { logInThunk } from './auth.thunk';
 
 const initialState = {
-  isLoggedIn: false,
-  user: null,
+  access_token: null,
+  token_type: null,
+  status: FETCH_STATUS.Idle,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginAction(state, action) {
-      if (action.payload.password === 'admin') {
-        state.isLoggedIn = true;
-        state.user = action.payload.user;
-      }
+    logoutAction: state => {
+      state.access_token = null;
+      state.token_type = null;
+      state.status = FETCH_STATUS.Resolved;
     },
-    logoutAction() {
-      return initialState;
-    },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(logInThunk.pending, state => {
+        state.status = FETCH_STATUS.Loading;
+      })
+      .addCase(logInThunk.fulfilled, (state, { payload }) => {
+        state.access_token = payload.access_token;
+        state.token_type = payload.token_type;
+        state.status = FETCH_STATUS.Resolved;
+      })
+      .addCase(logInThunk.rejected, (state, action) => {
+        state.status = FETCH_STATUS.Rejected;
+      });
   },
 });
 
-export const { loginAction, logoutAction } = authSlice.actions;
-const authReducer = authSlice.reducer;
-export default authReducer;
+export const { logoutAction } = authSlice.actions;
+export default authSlice.reducer;
