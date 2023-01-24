@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 import { App } from './App';
-import { AuthProvider } from 'context/AuthContext';
 import { persistor, store } from 'redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,9 +16,7 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <BrowserRouter>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <App />
       </BrowserRouter>
     </PersistGate>
   </Provider>,
