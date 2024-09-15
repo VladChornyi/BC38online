@@ -1,19 +1,14 @@
+import { useSelector } from 'react-redux';
+import { NotAuth } from './NotAuth';
+import { UserNav } from './UserNav';
+
 export const Sidebar = () => {
+  const token = useSelector(state => state.auth.access_token);
+
   return (
-    <aside className="nav nav-pills p-5 bg-light w-100" style={{ maxWidth: '300px', height: 'auto' }}>
-      <div className="d-flex flex-column" style={{ position: 'sticky', top: 30, left: 0, height: 'max-content' }}>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-light">
-          Home
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Profile
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Messages
-        </a>
-        <a href="/" style={{ textAlign: 'left' }} className="btn btn-link">
-          Settings
-        </a>
+    <aside className="nav nav-pills p-5 bg-light col-3" style={{ height: 'auto' }}>
+      <div className="d-flex flex-column" style={{ position: 'sticky', top: 30, left: 0, height: '88vh' }}>
+        {token ? <UserNav /> : <NotAuth />}
       </div>
     </aside>
   );

@@ -1,81 +1,84 @@
-import { Component } from 'react';
+import { useCallback } from 'react';
+import { memo, useMemo, useState, Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCounter, getUserEmail } from 'redux/counter/counter.selectors';
+import { decrementAction, incrementAction } from 'redux/counter/counter.slice';
 
 const mobilePhones = [
   { title: 'iPhone', name: 'iphone' },
   { title: 'Android', name: 'android' },
 ];
 
-export class Counter extends Component {
-  //   constructor() {
-  //     super()
-  //     this.state = {counter:0}
-  // }
+const Test = memo(({ test }) => {
+  return (
+    <button type="button" className="btn p-3 btn-outline-light w-25 mx-2" onClick={test}>
+      button
+    </button>
+  );
+});
 
-  state = { counter: this.props.defaultValue, iphone: 0, android: 0 };
+export const Counter = ({ defaultValue }) => {
+  const dispatch = useDispatch();
+  const counter = useSelector(selectCounter);
 
-  handleVotePhone = e => {
+  const [iphone, setIphone] = useState(0);
+  const [android, setAndroid] = useState(0);
+
+  const handleVotePhone = e => {
     const { name } = e.target;
-
-    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
+    switch (name) {
+      case 'iphone':
+        setIphone(prev => prev + 1);
+        break;
+      case 'android':
+        setAndroid(prev => prev + 1);
+        break;
+      default:
+        throw new Error('something went wrong');
+    }
   };
 
-  handleIncrement = () => {
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
+  const handleIncrement = () => {
+    dispatch(incrementAction(10));
+    // dispatch({ type: INCREMENT, payload: 1 });
+    // setCounter(prevState => prevState + 1);
   };
 
-  handleDecrement = () => {
-    this.setState(prevState => ({ counter: prevState.counter - 1 }));
+  const handleDecrement = () => {
+    dispatch(decrementAction(10));
   };
 
-  // onClick = (callback) => {
-  //   const event = { event: 'click' };
-  //   callback(event);
-  // }
+  return (
+    <div className="mb-5 p-5 text-white bg-dark rounded-3">
+      <h2 className="text-center">Counter</h2>
+      {/* <p className="text-center my-5" style={{ fontSize: 80 }}>
+        IPhone: {iphone}
+      </p>
+      <p className="text-center my-5" style={{ fontSize: 80 }}>
+        Android: {android}
+      </p> */}
+      <p className="text-center my-5" style={{ fontSize: 80 }}>
+        {counter}
+      </p>
 
-  render() {
-    // console.log('this.props :>> ', this.props);
-    return (
-      <div className="mb-5 p-5 text-white bg-dark rounded-3">
-        <h2 className="text-center">Counter</h2>
-        <p className="text-center my-5" style={{ fontSize: 80 }}>
-          IPhone: {this.state.iphone}
-        </p>
-        <p className="text-center my-5" style={{ fontSize: 80 }}>
-          Android: {this.state.android}
-        </p>
-        <p className="text-center my-5" style={{ fontSize: 80 }}>
-          {this.state.counter}
-        </p>
+      <div className="d-flex align-items-center justify-content-center w-100">
+        {/* <button name="iphone" className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleVotePhone}>
+          IPhone
+        </button>
+        <button className="btn p-3 btn-outline-light w-25 mx-2" name="android" type="button" onClick={handleVotePhone}>
+          Android
+        </button> */}
 
-        <div className="d-flex align-items-center justify-content-center w-100">
-          <button
-            name="iphone"
-            className="btn p-3 btn-outline-light w-25 mx-2"
-            type="button"
-            onClick={this.handleVotePhone}
-          >
-            IPhone
-          </button>
-          <button
-            className="btn p-3 btn-outline-light w-25 mx-2"
-            name="android"
-            type="button"
-            onClick={this.handleVotePhone}
-          >
-            Android
-          </button>
-
-          <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={this.handleIncrement}>
-            Plus
-          </button>
-          <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={this.handleDecrement}>
-            Minus
-          </button>
-        </div>
+        <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleIncrement}>
+          Plus
+        </button>
+        <button className="btn p-3 btn-outline-light w-25 mx-2" type="button" onClick={handleDecrement}>
+          Minus
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Counter.defaultProps = {
   defaultValue: 0,
